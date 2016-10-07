@@ -3,6 +3,21 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF; }
+  color: #00B7FF;
+  text-decoration: none; }
+
+.login {
+  align-items: center;
+  display: flex;
+  flex-direction: column; }
+
+.btn {
+  padding: 15px 20px;
+  color: #fff;
+  background: green;
+  max-width: 200px;
+  text-align: center; }
+  .btn a {
+    color: inherit; }
 
 /*# sourceMappingURL=style.css.map */
