@@ -8,8 +8,6 @@ var token;
 
 router.get('/genres', function(req, res, next) {
   token = req.session.access_token;
-  console.log(token)
-  // token = 'BQCyNon7lF2wwJAySZuHuelsyJQWLGk-6OqEcz-GISvs2yLJ1nDbT9ee5IlzohswWHPteTxU5StwfYimfQYeIz30RH2JucyttZN2cSu_bHfYjwkDbv6gr2whSDJF-WjZqCWRbBuNlr-_Ycx_b40NT61H98dOZN01fdC26pp2i7bV4iI4Qh_1foCEVQg'
   var options = {
     url: base + 'me/top/artists?limit=50',
     headers: {
@@ -18,8 +16,13 @@ router.get('/genres', function(req, res, next) {
     json: true
   };
   request.get(options, function(error, response, body) {
-    if (error || !body) return res.send(400);
-    getGenres(body.items)
+    if (!body.items) {
+      res.render('index', { user: req.session.user })
+    } else {
+      var topTen = getGenres(body.items)
+      res.render('index', { user: req.session.user, topTen: topTen });
+      req.url = '/'
+    }
   });
 });
 
@@ -66,7 +69,7 @@ function getGenres(artists) {
   }
   
   var topGenres = countGenres(genreArray);
-  console.log(sortByVal(topGenres).slice(0,10))
+  return sortByVal(topGenres).slice(0,10)
 }
 
 function countGenres(genreArray) {

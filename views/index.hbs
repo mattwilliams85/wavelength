@@ -1,16 +1,24 @@
 <div class="login">
   <h1>WAVELENGTH</h1>
-  <p>Welcome to Spotify Wavelength</p>
+  <p>Find out what you're really into.</p>
+  
+  {{#if user}}
+    <a href="/api/genres">Get Genres</a>
+    <br>
+    <a href="/logout">Logout</a>
+  {{else}}
+    <div class="btn">
+      <a href="/login">Log in with Spotify</a>
+    </div>
+  {{/if}}
+  <br>
 
-  <div class="btn">
-    <a href="/login">Log in with Spotify</a>
-  </div>
-  <br>
-  <a href="/api/genres">Get Genres</a>
-  <br>
-  <a href="/logout">Logout</a>
+  
 </div>
 
+{{#each topTen}}
+  <div>#{{@index}} {{this.name}} : {{this.count}}</li>
+{{/each}}
 
 <h1>Logged in as {{user.display_name}}</h1>
 <div class="media">
