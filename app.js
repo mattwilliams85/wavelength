@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // SPOTIFY
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
-var redirect_uri = 'http://localhost:3000/callback'; 
+var redirect_uri = process.env.REDIRECT_URI;
 
 var generateRandomString = function(length) {
   var text = '';
