@@ -34,21 +34,38 @@ h1 {
   min-height: 50vh;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
+#discover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: .5s; }
+  #discover.hidden {
+    opacity: 0; }
+    #discover.hidden .btn {
+      transition: .5s;
+      width: 0; }
+
+#tagline {
+  opacity: 1;
+  transition: .5s; }
+
 .btn {
-  padding: 15px 20px;
   color: #fff;
   background: #111;
-  min-width: 300px;
+  width: 300px;
   border-radius: 20px;
   text-align: center;
-  cursor: pointer; }
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
   .btn.primary {
     background: #1DB954;
     transition: .3s; }
     .btn.primary:hover {
       background-color: #2bd266; }
-  .btn.disabled {
-    background: #ccc; }
   .btn a {
     color: inherit; }
 

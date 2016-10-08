@@ -20,21 +20,18 @@ String.prototype.capitalize = function() {
 
 $('#get-genres').on('click', function () {
   getData();
-  $('#discover').hide();
-})
-
-$('.btn').on('click', function () {
-  $(this).addClass('disabled')
-})
-
-$('#logout').on('click', function () {
-  $('.btn').removeClass('disabled')
+  
 })
 
 function getData() {
   $.get( "api/genres", function( data ) {
-    topTen = JSON.parse(data)
-    setData(topTen)
+    $('.btn span').fadeOut('fast')
+    $('#discover').addClass('hidden')
+    setTimeout(function() {
+      $('#discover').hide()
+      topTen = JSON.parse(data)
+      setData(topTen)
+    }, 500)
   });
 }
 
