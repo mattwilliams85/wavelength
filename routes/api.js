@@ -47,19 +47,7 @@ function sortByVal(obj) {
   return array;
 };
 
-// function getArtistIds(data) {
-//   var tracks = data.items;
-//   console.log(tracks.length)
-//   var idArray = [];
-//   for (var i = 0; i < tracks.length; i++) {
-//     var id = tracks[i].track.artists[0].id;
-//     if (idArray.indexOf(id) === -1) idArray.push(id);
-//   }
-//   getArtists(idArray);
-// }
-
 function getGenres(artists) {
-  // console.log(artists)
   var genreArray = []
   for (var i = 0; i < artists.length; i++) {
     artists[i].genres.forEach(function (item) {
@@ -80,19 +68,5 @@ function countGenres(genreArray) {
   }
   return genres
 }
-
-// function getArtists(idArray) {
-//   var options = {
-//     url: base + 'artists?ids=' + idArray.join(','),
-//     headers: {
-//       'Authorization' : 'Bearer ' + token
-//     },
-//     json: true
-//   };
-
-//   request.get(options, function(error, response, body) {
-//     getGenres(body.artists)
-//   });
-// }
 
 module.exports = router;

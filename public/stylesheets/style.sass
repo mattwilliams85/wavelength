@@ -10,7 +10,12 @@ a
   text-decoration: none
 
 h1 
-  font-size: 50px
+  font-size: 50pt;
+  font-weight: 800;
+
+@media screen and (max-width: 700px) 
+  h1 
+    font-size: 30pt
 
 .container 
   max-width: 800px
@@ -31,14 +36,19 @@ h1
 .btn 
   padding: 15px 20px
   color: #fff
-  background: #1DB954
+  background: #111
   min-width: 300px
   border-radius: 20px
   text-align: center
   cursor: pointer
-  transition: .3s
-  &:hover 
-    background-color: #2bd266
+  &.primary
+    background: #1DB954
+    transition: .3s
+    &:hover 
+      background-color: #2bd266
+  &.disabled 
+    background: #ccc;
+
 
   a
     color: inherit

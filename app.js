@@ -18,13 +18,10 @@ var app = express();
 
 app.use(session({secret: 'ssshhhhh'}));
 
-// view engine setup
 app.set('trust proxy', 1)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,11 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
 var redirect_uri = 'http://localhost:3000/callback'; 
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
+
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -62,7 +55,6 @@ app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // your application requests authorization
   var scope = 'user-read-private user-read-email user-library-read user-top-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -75,9 +67,6 @@ app.get('/login', function(req, res) {
 });
 
 app.get('/callback', function(req, res) {
-
-  // your application requests refresh and access tokens
-  // after checking the state parameter
   var session = req.session
   var code = req.query.code || null;
   var state = req.query.state || null;

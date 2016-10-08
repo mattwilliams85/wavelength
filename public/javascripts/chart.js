@@ -15,13 +15,20 @@ var data = {
 };
 
 String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();})
 }
 
 $('#get-genres').on('click', function () {
-  console.log('hi')
   getData();
   $('#discover').hide();
+})
+
+$('.btn').on('click', function () {
+  $(this).addClass('disabled')
+})
+
+$('#logout').on('click', function () {
+  $('.btn').removeClass('disabled')
 })
 
 function getData() {
@@ -44,6 +51,19 @@ function buildChart() {
   var myChart = new Chart(ctx, {
       type: 'polarArea',
       data: data,
-      options: {}
+      options: { 
+        scale: { 
+          ticks: { display: false } 
+        },
+        tooltips: {
+           callbacks: {
+             label: function(tooltipItem, data) {
+               var value = data.datasets[0].data[tooltipItem.index];
+               var label = data.labels[tooltipItem.index];
+               return value + ' Artists in ' + label;
+             }
+           }
+         }, 
+      }
   });
 }
