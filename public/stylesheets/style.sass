@@ -1,22 +1,65 @@
 body
-  padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-
+  color: #333
+  background: #555
+  font-family: 'Roboto'
+  -webkit-font-smoothing: antialiased
+  margin: 0
+  padding: 10px
 a
   color: #00B7FF
-  text-decoration: none;
+  text-decoration: none
 
-.login 
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+h1 
+  font-size: 50px
+
+.container 
+  max-width: 800px
+  margin: 0 auto
+
+.main
+  margin: 15px 0
+  padding: 30px 10px
+  background-color: #fff
+  align-items: center
+  justify-content: center
+  text-align: center
+  display: flex
+  flex-direction: column
+  min-height: 50vh
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
 
 .btn 
-  padding: 15px 20px;
-  color: #fff;
-  background: green;
-  max-width: 200px;
-  text-align: center;
+  padding: 15px 20px
+  color: #fff
+  background: #1DB954
+  min-width: 300px
+  border-radius: 20px
+  text-align: center
+  cursor: pointer
+  transition: .3s
+  &:hover 
+    background-color: #2bd266
 
   a
-    color: inherit;
+    color: inherit
+
+.navbar
+  color: #fff
+  background: #222
+  height: 40px
+  justify-content: space-between
+  flex-direction: row
+  display: flex
+  padding: 10px 20px
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  align-items: center
+
+  img 
+    height: 40px
+    width: 40px
+    margin: 0 10px 0 0
+    border-radius: 50%
+
+  div 
+    display: flex
+    align-items: center

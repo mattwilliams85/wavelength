@@ -1,41 +1,43 @@
-<div class="login">
-  <h1>WAVELENGTH</h1>
-  <p>Find out what you're really into.</p>
-  
-  {{#if user}}
-    <a href="/api/genres">Get Genres</a>
-    <br>
-    <a href="/logout">Logout</a>
-  {{else}}
-    <div class="btn">
-      <a href="/login">Log in with Spotify</a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<div class="container">
+  <div class="navbar">
+    {{#if user}}
+    <div>  
+      <img class="media-object" width="150" src="{{user.images.0.url}}" />
+      <span>Logged in as <b>{{user.display_name}}</b></span>
     </div>
-  {{/if}}
-  <br>
+    <div>
+      <a href="logout">Logout</a>
+    </div>
+    {{else}}
+    <div>
+      <img src="http://static1.squarespace.com/static/56d660885559866a562b8c69/572ff44c2b8dde9e10b803c5/572ff44e9f72664ead5b2a93/1462760652789/spotify-icon.png" alt="">
+      <span>Hello, <b>Anonymous</b></span>
+     </div>
+    {{/if}}
+  </div>
 
+  <div class="main">
+    <h1>WAVELENGTH</h1>
+    {{#if user}}
+      <div id="discover">
+        <p>Ready?</p>
+        <div id="get-genres" class="btn">Quantify Your Tastes</div>
+      </div>
+    {{else}}
+      <p>Find out what you're really into.</p>
+      <div class="btn">
+        <a href="/login">Log in with Spotify</a>
+      </div>
+    {{/if}}
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
   
 </div>
 
-{{#each topTen}}
-  <div>#{{@index}} {{this.name}} : {{this.count}}</li>
-{{/each}}
 
-<h1>Logged in as {{user.display_name}}</h1>
-<div class="media">
-  <div class="pull-left">
-    <img class="media-object" width="150" src="{{user.images.0.url}}" />
-  </div>
-  <div class="media-body">
-    <dl class="dl-horizontal">
-      <dt>Display name</dt><dd class="clearfix">{{user.display_name}}</dd>
-      <dt>Id</dt><dd>{{user.id}}</dd>
-      <dt>Email</dt><dd>{{user.email}}</dd>
-      <dt>Spotify URI</dt><dd><a href="{{user.external_urls.spotify}}">{{user.external_urls.spotify}}</a></dd>
-      <dt>Link</dt><dd><a href="{{user.href}}">{{user.href}}</a></dd>
-      <dt>Profile Image</dt><dd class="clearfix"><a href="{{user.images.0.url}}">{{user.images.0.url}}</a></dd>
-      <dt>Country</dt><dd>{{user.country}}</dd>
-    </dl>
-  </div>
-</div>
+<script src="../javascripts/chart.js"></script>
 
 

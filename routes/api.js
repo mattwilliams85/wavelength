@@ -5,6 +5,7 @@ var router = express.Router();
 var base = 'https://api.spotify.com/v1/';
 var genreLimit = 5;
 var token;
+var topTen;
 
 router.get('/genres', function(req, res, next) {
   token = req.session.access_token;
@@ -16,12 +17,11 @@ router.get('/genres', function(req, res, next) {
     json: true
   };
   request.get(options, function(error, response, body) {
-    if (!body.items) {
-      res.render('index', { user: req.session.user })
+    if (body.error || error) {
+      console.log(body.error)
     } else {
-      var topTen = getGenres(body.items)
-      res.render('index', { user: req.session.user, topTen: topTen });
-      req.url = '/'
+      topTen = getGenres(body.items)
+      res.send(JSON.stringify(topTen.splice(0,genreLimit)));
     }
   });
 });
@@ -62,7 +62,6 @@ function getGenres(artists) {
   // console.log(artists)
   var genreArray = []
   for (var i = 0; i < artists.length; i++) {
-    console.log(artists[i].genres)
     artists[i].genres.forEach(function (item) {
       genreArray.push(item)
     })
